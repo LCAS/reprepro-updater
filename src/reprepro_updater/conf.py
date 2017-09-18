@@ -153,13 +153,14 @@ Update: %(update_rule)s
 
 class UpdateElement(object):
     def __init__(self, name, method, suites, component, architectures,
-                 filter_formula=None, verify_release=None):
+                 filter_formula=None, filter_list=None, verify_release=None):
         self.name = name
         self.method = method
         self.suites = suites
         self.component = component
         self.architectures = architectures
         self.filter_formula = filter_formula
+        self.filter_list = filter_list
         self.verify_release = verify_release
 
     def generate_update_rule(self, distro, arch):
@@ -175,6 +176,8 @@ class UpdateElement(object):
         output += 'Architectures: %s\n' % arch
         if self.filter_formula:
             output += 'FilterFormula: %s\n' % self.filter_formula
+        if self.filter_list:
+            output += 'FilterList: %s\n' % self.filter_list
         if self.verify_release:
             output += 'VerifyRelease: %s\n' % self.verify_release
         output += '\n'

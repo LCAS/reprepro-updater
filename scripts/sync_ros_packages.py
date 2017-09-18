@@ -86,6 +86,7 @@ for ubuntu_distro in distros:
              'component': 'main',
              'architectures': arch,
              'filter_formula': 'Package (%% ros-%s-*)' % options.rosdistro,
+             'filter_list': 'install excludefile'
              }
 
         updates_generator.add_update_element(conf.UpdateElement(**d))
