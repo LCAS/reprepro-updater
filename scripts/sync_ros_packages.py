@@ -23,6 +23,8 @@ parser.add_option("-n", "--no-cleanup", dest="no_cleanup",
                   default=False, action='store_true')
 parser.add_option("-c", "--commit", dest="commit",
                   action='store_true', default=False)
+parser.add_option("-f", "--filter_list", dest="filter_list", default=None,
+                  help="The FilterList specification")
 
 (options, args) = parser.parse_args()
 
@@ -85,9 +87,10 @@ for ubuntu_distro in distros:
              'suites': ubuntu_distro,
              'component': 'main',
              'architectures': arch,
-             'filter_formula': 'Package (%% ros-%s-*)' % options.rosdistro,
-             'filter_list': 'install excludefile'
+             'filter_formula': 'Package (%% ros-%s-*)' % options.rosdistro
              }
+        if options.filter_list:
+            d['filter_list'] = options.filter_list
 
         updates_generator.add_update_element(conf.UpdateElement(**d))
 
