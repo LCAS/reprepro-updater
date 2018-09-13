@@ -21,6 +21,8 @@ parser.add_option("-u", "--upstream-ros", dest="upstream_ros", default=None,
                   " local reprepro_config ID")
 parser.add_option("-n", "--no-cleanup", dest="no_cleanup",
                   default=False, action='store_true')
+parser.add_option("-N", "--no-install", dest="no_install",
+                  default=False, action='store_true')
 parser.add_option("-c", "--commit", dest="commit",
                   action='store_true', default=False)
 parser.add_option("-f", "--filter_list", dest="filter_list", default=None,
@@ -131,7 +133,8 @@ if not options.no_cleanup:
         for arch in arches:
             run_cleanup(conf_params.repository_path, options.rosdistro, distro,
                         arch, options.commit)
-for distro in distros:
-    for arch in arches:
-        run_update(conf_params.repository_path, dist, updates_generator,
-                   distro, arch, options.commit)
+if not options.no_install:
+    for distro in distros:
+        for arch in arches:
+            run_update(conf_params.repository_path, dist, updates_generator,
+                       distro, arch, options.commit)
