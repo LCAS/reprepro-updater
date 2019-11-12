@@ -153,7 +153,7 @@ Update: %(update_rule)s
 
 class UpdateElement(object):
     def __init__(self, name, method, suites, component, architectures,
-                 filter_formula=None, source_suite=None, verify_release=None):
+                 filter_formula=None, filter_list=None, source_suite=None, verify_release=None):
         self.name = name
         self.method = method
         self.source_suite = source_suite
