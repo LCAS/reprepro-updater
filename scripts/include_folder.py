@@ -131,7 +131,7 @@ if options.commit:
             package_str_parts.append(changes.content['Architecture'])
             print('Importing package: %s' % ':'.join(package_str_parts))
 
-            #rename_ddeb_files_in_changes_file(changes.filename)
+            rename_ddeb_files_in_changes_file(changes.filename)
             if not run_include_command(options.repo_path,
                                        changes.content['Distribution'],
                                        changes.filename):
